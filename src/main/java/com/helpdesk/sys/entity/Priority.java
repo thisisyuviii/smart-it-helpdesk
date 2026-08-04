@@ -1,0 +1,8 @@
+package com.helpdesk.sys.entity;
+
+public enum Priority {
+    LOW,
+    MEDIUM,
+    HIGH,
+    CRITICAL
+}

@@ -1,0 +1,23 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/resources/architecture.png
+!**/src/main/resources/db/migration/*.sql
+
+# IDE & Editor files
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.project
+.settings/
+.vscode/
+
+# Environment & Log files
+*.log
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: smart-it-helpdesk
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:helpdeskdb;DB_CLOSE_DELAY=-1;MODE=MySQL}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: ${SPRING_JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:db/migration/data.sql
+
+# Custom Security & JWT properties
+app:
+  jwt:
+    secret: ${JWT_SECRET:9a4f2c8d7e1b5a3c6d8e0f2a4b6c8d1e3f5a7b9c0d2e4f6a8b1c3d5e7f9a0b2c}
+    expiration-milliseconds: ${JWT_EXPIRATION_MS:86400000} # 24 Hours
+
+# Gen AI Triage LLM properties
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:demo_key}
+    url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent}
+
+# Scheduled Jobs Configuration
+helpdesk:
+  sla:
+    cron: "0 */15 * * * *" # Every 15 minutes
+
+# OpenAPI Swagger UI Config
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    com.helpdesk.sys: DEBUG
+    org.springframework.security: INFO
